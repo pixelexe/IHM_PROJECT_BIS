@@ -5,6 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -18,18 +21,16 @@ public class PageAccueil extends HeaderAbstract {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("MIAGE CODE CRAFTING");
+        primaryStage.setTitle("MIAGE CODE CRAFTIN");
 
         Text titleLabel = new Text("MIAGE CODE CRAFTING");
         titleLabel.setFont(Font.font("Consolas", FontWeight.BOLD, 40));
 
-        Hyperlink link = new Hyperlink("https://www.linkedin.com/in/nicolasherbaut/");
-        link.setOnAction(e -> getHostServices().showDocument(link.getText()));
-        link.setFont(Font.font("Consolas", FontWeight.NORMAL, 18));
+        Hyperlink link = createImageHyperlinkRes("", "linkedin.png", "https://www.linkedin.com/in/nicolasherbaut/");
+        Hyperlink link2 = createImageHyperlinkPetit("", "sorbonne.png","https://www.pantheonsorbonne.fr/page-perso/nherbaut");
+        HBox reseauBox = new HBox(20);
+        reseauBox.getChildren().addAll(link, link2);
 
-        Hyperlink link2 = new Hyperlink("https://www.pantheonsorbonne.fr/page-perso/nherbaut");
-        link2.setOnAction(e -> getHostServices().showDocument(link2.getText()));
-        link2.setFont(Font.font("Consolas", FontWeight.NORMAL, 18));
 
         concepteurLabel = createStyledLabel(getDaymode());
         concepteurLabel.setText(
@@ -37,8 +38,7 @@ public class PageAccueil extends HeaderAbstract {
         concepteurLabel.setFont(Font.font("Consolas", FontWeight.NORMAL, 18));
 
         pourquoiMiageLabel = createStyledLabel(getDaymode());
-        pourquoiMiageLabel.setText(
-                "J'ai créé ce site afin de permettre une facilitation de l'utilisation de mes ressources. Je mets à disposition sur ce site des exercices ainsi que des cours pour l'entiereté des mes étudiants en L2, L3, M1 et M2");
+        pourquoiMiageLabel.setText("J'ai créé ce site afin de permettre une facilitation de l'utilisation de mes ressources. Je mets à disposition sur ce site des exercices ainsi que des cours pour l'entiereté des mes étudiants en L1, L2, L3, M1 et M2");
         pourquoiMiageLabel.setFont(Font.font("Consolas", FontWeight.NORMAL, 18));
 
         Text ressourcesTitle = new Text("\nRESSOURCES");
@@ -48,15 +48,26 @@ public class PageAccueil extends HeaderAbstract {
         Button button2 = new Button("Exercice");
 
         String policeConsolas = "Consolas";
-        double taillePolice = 16; 
+        double taillePolice = 16;
 
         button1.setFont(Font.font(policeConsolas, taillePolice));
         button2.setFont(Font.font(policeConsolas, taillePolice));
 
-        double largeurBouton = 100; 
+        double largeurBouton = 100;
         double hauteurBouton = 40;
         button1.setMinSize(largeurBouton, hauteurBouton);
         button2.setMinSize(largeurBouton, hauteurBouton);
+
+        button1.setStyle("-fx-background-color: rgb(154, 152, 152); -fx-border-color: black;");
+        button2.setStyle("-fx-background-color: rgb(154, 152, 152); -fx-border-color: black;");
+
+        button1.setOnMouseEntered(e -> button1.setStyle("-fx-background-color: lightgray; -fx-border-color: black;"));
+        button1.setOnMouseExited(
+                e -> button1.setStyle("-fx-background-color: rgb(154, 152, 152); -fx-border-color: black;"));
+
+        button2.setOnMouseEntered(e -> button2.setStyle("-fx-background-color: lightgray; -fx-border-color: black;"));
+        button2.setOnMouseExited(
+                e -> button2.setStyle("-fx-background-color: rgb(154, 152, 152); -fx-border-color: black;"));
 
         button1.setOnAction(e -> getHostServices().showDocument("https://java.l3.miage.dev/index.html"));
         button2.setOnAction(e -> {
@@ -70,7 +81,7 @@ public class PageAccueil extends HeaderAbstract {
         root = new VBox(20);
         root.setStyle("-fx-padding: 20px;");
         root.setAlignment(Pos.TOP_LEFT);
-        root.getChildren().addAll(Header(), titleLabel, link, link2, concepteurLabel, pourquoiMiageLabel,
+        root.getChildren().addAll(Header(), titleLabel, reseauBox, concepteurLabel, pourquoiMiageLabel,
                 ressourcesTitle, button1,
                 button2);
 
@@ -84,6 +95,20 @@ public class PageAccueil extends HeaderAbstract {
 
     private void updateStyles(Label concepteurLabel, Label pourquoiMiageLabel, Scene scene) {
     }
+
+    public Hyperlink createImageHyperlinkRes(String text, String imageUrl, String url) {
+            Image image = new Image(getClass().getResourceAsStream(imageUrl));
+            ImageView imageView = new ImageView(image);
+    
+            imageView.setFitWidth(80);
+            imageView.setFitHeight(75);
+    
+            Hyperlink hyperlink = new Hyperlink(text);
+            hyperlink.setGraphic(imageView);
+            hyperlink.setOnAction(e -> getHostServices().showDocument(url));
+    
+            return hyperlink;
+        }
 
     public static void main(String[] args) {
         launch(args);

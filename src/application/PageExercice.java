@@ -18,17 +18,13 @@ public class PageExercice extends HeaderAbstract {
     @Override
     public void start(Stage primaryStage) {
 
-        // label
         Label titleLabel = createLabel(" L3 Exercice 1 : Hello World");
-        titleLabel.getStyleClass().add("root");
         titleLabel.getStyleClass().add("title-label");
 
         root = createVBox(10, Header(), titleLabel);
-        // root.getStyleClass().add("root");
 
         inputTextArea = createStyledTextArea(getDaymode());
-        inputTextArea.setText("class HelloWorld \n" +
-                "{ \n" +
+        inputTextArea.setText("public class HelloWorld {\n" +
                 "    public static void main(String args[]) \n" +
                 "    { \n" +
                 "        System.out.println(\"Hello, World !\"); \n" +
@@ -38,8 +34,7 @@ public class PageExercice extends HeaderAbstract {
         outputTextArea = createStyledTextArea(getDaymode());
         outputTextArea.setText("Output will appear here ...");
         outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 0.6);");
-
-
+        outputTextArea.getStyleClass().addAll("outputTextArea");
         outputTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("Output will appear here ...")) {
                 outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 0.6);");
@@ -56,7 +51,7 @@ public class PageExercice extends HeaderAbstract {
         VBox bottomVBox = createVBox(0, buttonBox, createOutputLabel(" Output : "), outputTextArea);
 
         bottomVBox.getChildren().get(0).getStyleClass().add("buttonVBox");
-        bottomVBox.getChildren().get(1).getStyleClass().add("output");
+        bottomVBox.getChildren().get(0).getStyleClass().add("output");
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(root);
@@ -80,40 +75,20 @@ public class PageExercice extends HeaderAbstract {
         root.getStyleClass().add(style);
         outputTextArea.getStyleClass().removeAll(getDaymode(), getNightMode());
         outputTextArea.getStyleClass().add(style);
-
     }
 
     public HBox createStyledButtonBox(String style) {
         HBox buttonBox = new HBox(10);
-        // buttonBox.setAlignment(Pos.BASELINE_CENTER);
 
-        // BOUTON A GAUCHE
         buttonBox.setAlignment(Pos.CENTER_LEFT);
 
-        /*
-         * //cette ligne ca met la hbox couleur merde donc si on change la couleur merde
-         * en black c'est bon
-         * buttonBox.getStyleClass().add("night-mode"); // Pour la HBox des boutons
-         */
         buttonBox.getStyleClass().removeAll(getDaymode(), getNightMode());
+        buttonBox.getStyleClass().add("title-label");
 
-        buttonBox.getStyleClass().add("button-box"); // Ajoutez 'button-box' ici
-
-        buttonBox.getStyleClass().add(style);
-
-        // Menu bouton pour menu déroulant de action
         MenuButton actionButton = createActionMenuButton();
         Button getInstructionsButton = createButton("Get Instructions");
         Button runButton = createGreenButton("RUN");
         Button stopButton = createRedButton("STOP");
-
-        /*
-         * actionButton.getStyleClass().removeAll("day-mode", "night-mode");
-         * getInstructionsButton.getStyleClass().removeAll("day-mode", "night-mode");
-         * //Style bouton pour couleur
-         * runButton.getStyleClass().removeAll("day-mode", "night-mode");
-         * stopButton.getStyleClass().removeAll(getDaymode(), getNightMode());
-         */
 
         runButton.getStyleClass().add("green-button");
         stopButton.getStyleClass().add("red-button");
@@ -121,20 +96,16 @@ public class PageExercice extends HeaderAbstract {
         buttonBox.getChildren().addAll(
                 actionButton,
                 getInstructionsButton,
-                new Label(), // Ajoutez un espace (ou tout autre nœud) entre les boutons
+                new Label(),
                 runButton,
                 stopButton);
 
         runButton.setOnAction(e -> runCode());
         stopButton.setOnAction(e -> stopCode());
-
-        // Add padding to the top of the button box
-        buttonBox.setPadding(new Insets(20, 20, 20, 10)); // padding autour des boutons
-
+        buttonBox.setPadding(new Insets(20, 20, 20, 10));
         return buttonBox;
     }
 
-    // MENU DEROULANT POUR ACTION
     public MenuButton createActionMenuButton() {
         MenuButton menuButton = new MenuButton("Action");
         menuButton.getItems().addAll(
@@ -143,22 +114,18 @@ public class PageExercice extends HeaderAbstract {
                 new MenuItem("My snips"),
                 new MenuItem("Download as Maven"),
                 new MenuItem("Request Help with this code"));
-        // Set the preferred width to match other buttons
-        menuButton.setPrefWidth(120); // Use the actual width of other buttons
-        menuButton.setPrefHeight(30); // Use the actual height of otwoher buttons, if needed
 
-        // Add action handlers for each menu item if necessary
-        // Example:
-        // menuButton.getItems().get(0).setOnAction(e -> openInNewTab());
+        menuButton.setPrefWidth(120); 
+        menuButton.setPrefHeight(30); 
+
         menuButton.setStyle("-fx-font-size: 18px;");
 
         return menuButton;
     }
 
-    // NOAM pour modifier le style de output
     private Label createOutputLabel(String text) {
         Label label = new Label(text);
-        label.getStyleClass().add("output-label"); // Ajoutez la nouvelle classe ici.
+        label.getStyleClass().add("title-label"); 
         return label;
     }
 

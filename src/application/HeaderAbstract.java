@@ -55,8 +55,6 @@ public abstract class HeaderAbstract extends Application {
         return hyperlink;
     }
 
-
-
     public Hyperlink createImageHyperlinkPetit(String text, String imageUrl, String url) {
         Image image = new Image(getClass().getResourceAsStream(imageUrl));
         ImageView imageView = new ImageView(image);

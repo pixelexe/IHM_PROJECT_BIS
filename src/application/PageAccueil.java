@@ -18,7 +18,7 @@ public class PageAccueil extends HeaderAbstract {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("MIAGE CODE CRAFTINGgg");
+        primaryStage.setTitle("MIAGE CODE CRAFTING");
 
         Text titleLabel = new Text("MIAGE CODE CRAFTING");
         titleLabel.setFont(Font.font("Consolas", FontWeight.BOLD, 40));

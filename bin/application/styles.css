@@ -1,0 +1,115 @@
+
+.text-area {
+    -fx-font-size: 18px;
+}
+
+.text-area.day-mode {
+    -fx-control-inner-background: white;
+    -fx-highlight-fill: #d6d6d6;
+    -fx-highlight-text-fill: black;
+}
+
+.text-area.night-mode {
+    -fx-control-inner-background: rgb(67, 63, 63);
+    -fx-highlight-fill: #2f2f2f;
+    -fx-highlight-text-fill: white;
+}
+
+.day-mode {
+    -fx-text-fill: black;
+    /*-fx-font-size: 18px;*/
+}
+
+.night-mode {
+    -fx-background-color: rgb(67, 63, 63);
+    -fx-text-fill: white;
+    /*-fx-font-size: 18px;*/
+    -fx-background-color: rgb(67, 63, 63);
+}
+
+.day-mode-button{
+    -fx-font-size: 20px;
+}
+/* .day-mode-button.night-mode{
+    -fx-background-color: rgb(67, 63, 63);
+}*/
+
+.header {
+    -fx-padding: 10px;
+    padding: 10px;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+
+.icon-button, .normal-button, .green-button {
+    -fx-background-color: #d6d6d6;
+    -fx-text-fill: black;
+}
+
+
+.root {
+    -fx-background-color: white;
+}
+.root.day-mode {
+    -fx-background-color: #d6d6d6;
+}
+
+.root.night-mode, scene.night-mode {
+    -fx-background-color: rgb(67, 63, 63);
+}
+
+.text-area.two.night-mode {
+    -fx-control-inner-background: #2f2f2f;
+    -fx-highlight-fill: #555555;
+    -fx-highlight-text-fill: white;
+}
+
+.root .bottom-vbox.night-mode {
+    -fx-background-color: #6f6f6f;
+}
+
+
+
+/*MODIF NOAM  */
+.title-label {
+    -fx-font-size: 24px; /* Taille du titre augmentée */
+    -fx-font-weight: bold; /* Titre en gras */
+}
+.green-button {
+    -fx-background-color: #28a745; /* Vert */
+    -fx-text-fill: white;
+}
+
+.red-button {
+    -fx-background-color: #dc3545; /* Rouge */
+    -fx-text-fill: white;
+}
+
+.output-label {
+    -fx-font-size: 20px; /* Augmentez la taille selon vos préférences */
+    -fx-font-weight: bold; /* Si vous voulez que le titre soit en gras */
+    -fx-alignment: center-left; /* Alignez le texte à gauche */
+}
+
+
+/*Ca en vrai pas incroybale vous pouvez enlever */
+.night-mode .button {
+    -fx-background-color: rgb(110, 108, 108);
+    -fx-text-fill: white; /* Texte blanc pour les boutons */
+}
+
+/* Pour les boutons spéciaux comme RUN et STOP qui ont déjà une couleur définie, 
+   vous devez les surcharger individuellement pour le mode nuit */
+.night-mode .green-button {
+    -fx-background-color: darkgreen; /* Une teinte plus sombre pour le vert en mode nuit */
+    -fx-text-fill: white; /* Texte blanc pour une meilleure lisibilité */
+}
+
+.night-mode .red-button {
+    -fx-background-color: darkred; /* Une teinte plus sombre pour le rouge en mode nuit */
+    -fx-text-fill: white; /* Texte blanc pour une meilleure lisibilité */
+}
+
+.night-mode .button-box {
+    -fx-background-color: rgb(67, 63, 63);
+}

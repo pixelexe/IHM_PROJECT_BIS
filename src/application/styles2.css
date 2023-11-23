@@ -1,0 +1,98 @@
+.text-area {
+    -fx-font-size: 16px;
+    -fx-control-inner-background: white;
+    -fx-highlight-fill: white;
+    -fx-highlight-text-fill: black;
+    -fx-prompt-text-fill: black;
+    -fx-border-color: #ccc; /* Light border color */
+    -fx-border-insets: 5; /* Border insets for space around the text */
+    -fx-border-width: 1; /* Border width */
+}
+
+.root.titleLabel {
+    -fx-padding: 10px;
+    padding: 10px;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    font-size: 18px;
+    -fx-background-color: #bd804f;
+    background-color: #bd804f;
+}
+
+.root {
+    -fx-background-color: #d6d6d6;
+}
+
+.bottomVBox {
+    -fx-background-color: #d6d6d6;
+}
+
+.buttonBox {
+    -fx-background-color: #555555;
+    -fx-border-color: white;
+    -fx-border-width: 1;
+}
+
+.button {
+    -fx-font-size: 18px;
+}
+
+.button.green {
+    -fx-background-color: darkgreen;
+    -fx-text-fill: white;
+}
+
+.button.red {
+    -fx-background-color: darkred;
+    -fx-text-fill: white;
+}
+
+.text-area.night-mode {
+    -fx-control-inner-background: rgb(41, 39, 39);
+    -fx-highlight-fill: #2f2f2f;
+    -fx-highlight-text-fill: white;
+    -fx-prompt-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-width: 1;
+}
+
+.root.night-mode, .bottomVBox.night-mode {
+    -fx-background-color: rgb(67, 63, 63);
+}
+
+.outputTextArea.night-mode {
+    -fx-highlight-fill: #2f2f2f;
+    -fx-highlight-text-fill: white;
+}
+
+
+
+
+
+
+
+/* Remove borders from icon buttons */
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-text-fill: #333; /* Set the text color */
+    -fx-font-size: 25px; /* Adjust the font size if necessary */
+}
+
+/* Style for titleLabel class to enlarge and center the title */
+.titleLabel {
+    -fx-font-size: 24px; /* Increase the font size */
+    -fx-text-fill: #333; /* Dark color for text */
+    -fx-background-color: transparent; /* Remove any background */
+    -fx-alignment: center; /* Center the text */
+    -fx-font-weight: bold; /*texte gras*/
+}
+
+/* Adjust the hyperlink images */
+.hyperlink .image-view {
+    -fx-fit-width: 150px; /* New width */
+    -fx-fit-height: 50px; /* New height */
+}
+
+/* Additional CSS rules remain unchanged */

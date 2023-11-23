@@ -1,5 +1,8 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,26 +14,80 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.stage.Stage;
 
 public class PageListeExos extends HeaderAbstract {
 
 	private ComboBox<String> levelComboBox;
 	private VBox exerciseContainer;
+	VBox root;
+	private List<HBox> listeHbox = new ArrayList<HBox>();
 
 
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Exercices Université");
 
-		VBox root = createRootPane();
+		root = createRootPane();
 		Scene scene = new Scene(createScrollPane(root), 400, 600);
+		scene.getStylesheets().add(getClass().getResource("stylesListeExos.css").toExternalForm());
+		//scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+		root.getStyleClass().addAll(getNightMode(),"root");
+		HBox hboxContainer = (HBox) root.getChildren().get(0);
+		for (Node buttonContainer : hboxContainer.getChildren()){
+			buttonContainer.getStyleClass().setAll(getNightMode());
+		}
         primaryStage.setMaximized(true);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
+
+
+@Override
+    // public void applyStyle(String style) {
+    //     // Appliquer le style à root et à tous les composants pertinents
+
+    //     root.getStyleClass().removeAll("day-mode", "night-mode");
+    //     root.getStyleClass().add(style);
+    //     applyStyleToChildren(root, style); // Appliquez récursivement le style aux enfants
+
+
+    //     levelComboBox.getStyleClass().removeAll("day-mode", "night-mode");
+    //     levelComboBox.getStyleClass().add(style);
+
+    //     for (Node child : exerciseContainer.getChildren()) {
+			
+    //         child.getStyleClass().removeAll("day-mode", "night-mode");
+    //         child.getStyleClass().add(style);
+    //     }
+
+    //     // Mettre à jour la scène pour refléter les changements de style
+    //     root.getScene().getRoot().requestLayout();
+    // }
+
+	public void applyStyle(String style){
+		for (HBox hboxList : listeHbox){
+			hboxList.getStyleClass().addAll(style);
+			Hyperlink test = (Hyperlink) hboxList.getChildren().get(0);
+			test.getStyleClass().removeAll(getDaymode(),getNightMode());
+			test.getStyleClass().addAll(style);
+		}
+
+	}
+
+    private void applyStyleToChildren(Pane parent, String style) {
+        for (Node child : parent.getChildren()) {
+            if (child instanceof Pane) {
+                applyStyleToChildren((Pane) child, style);
+            }
+            child.getStyleClass().removeAll("day-mode", "night-mode");
+            
+        }
+    }
 
 	private VBox createRootPane() {
 		VBox root = new VBox();
@@ -47,6 +104,7 @@ public class PageListeExos extends HeaderAbstract {
 		exerciseContainer = createExerciseContainer();
 
 		root.getChildren().addAll(Header(),titleLabel, levelComboBox, exerciseContainer);
+		root.getStyleClass().addAll(getNightMode());
 
 		return root;
 	}
@@ -81,14 +139,18 @@ public class PageListeExos extends HeaderAbstract {
 		if (selectedLevel != null) {
 			switch (selectedLevel) {
 			case "L1":
-				addExercise("L1-Exo 1: Hello world");
-				addExercise("L1-Exo 2: Premier programme");
-				addExercise("L1-Exo 3: Conditions If-Else");
-				addExercise("L1-Exo 4: Boucles While");
-				addExercise("L1-Exo 5: Boucles For");
-				addExercise("L1-Exo 6: Nombres");
-				addExercise("L1-Exo 7: Chaines");
-				addExercise("L1-Exo 8: Booléens");
+				listeHbox.clear();
+				listeHbox.add(addExercise("L1-Exo 1: Hello world"));
+				listeHbox.add(addExercise("L1-Exo 2: Premier programme"));
+				listeHbox.add(addExercise("L1-Exo 3: Conditions If-Else"));
+				listeHbox.add(addExercise("L1-Exo 4: Boucles While"));
+				listeHbox.add(addExercise("L1-Exo 5: Boucles For"));
+				listeHbox.add(addExercise("L1-Exo 6: Nombres"));
+				listeHbox.add(addExercise("L1-Exo 7: Chaines"));
+				listeHbox.add(addExercise("L1-Exo 8: Booléens"));
+				for (HBox hBox : listeHbox) {
+					hBox.getStyleClass().addAll("ListeHBox");
+				}
 				break;
 			case "L2":
 				addExercise("L2-Exo 1: Méthodes");
@@ -134,10 +196,10 @@ public class PageListeExos extends HeaderAbstract {
 		}
 	}
 
-	private void addExercise(String title) {
+	private HBox addExercise(String title) {
 		HBox hbox = new HBox();
 		hbox.setAlignment(Pos.CENTER);
-		hbox.setStyle("-fx-background-color: #d0d0d0; -fx-background-radius: 10;");
+		//hbox.setStyle("-fx-background-color: #d0d0d0; -fx-background-radius: 10;");
 		hbox.setSpacing(20);
 		hbox.setPadding(new Insets(5));
 
@@ -191,6 +253,7 @@ public class PageListeExos extends HeaderAbstract {
 		hbox.getChildren().add(hourglassButton);
 
 		exerciseContainer.getChildren().add(hbox);
+		return hbox;
 	}
 
 	private void handleExerciseClick(String exerciseTitle) {
@@ -203,12 +266,6 @@ public class PageListeExos extends HeaderAbstract {
 
 	public static void main(String[] args) {
 		launch(args);
-	}
-
-	@Override
-	public void applyStyle(String style) {
-		
-		throw new UnsupportedOperationException("Unimplemented method 'applyStyle'");
 	}
 
 	@Override

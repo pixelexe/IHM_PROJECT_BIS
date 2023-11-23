@@ -3,6 +3,10 @@
     -fx-font-size: 18px;
 }
 
+.outputTextArea {
+    -fx-pref-height: 250px;
+}
+
 .text-area.day-mode {
     -fx-control-inner-background: white;
     -fx-highlight-fill: #d6d6d6;
@@ -61,6 +65,7 @@
 scene.night-mode {
     -fx-background-color: rgb(67, 63, 63);
     background-color: rgb(67, 63, 63);
+
 }
 
 .text-area.two.night-mode {
@@ -69,16 +74,25 @@ scene.night-mode {
     -fx-highlight-text-fill: white;
 }
 
-.root .bottom-vbox.night-mode {
+.root, 
+.bottom-vbox {
     -fx-background-color: #6f6f6f;
     background-color: #6f6f6f;
 }
+
+.bottom-vbox {
+    -fx-background-color: #d6d6d6;
+    background-color: #d6d6d6;
+}
+
+
 
 .title-label {
     -fx-font-size: 24px;
     font-size: 24px;
     -fx-font-weight: bold;
     font-weight: bold;
+    -fx-text-fill: white;
 }
 
 .green-button {
@@ -122,4 +136,10 @@ scene.night-mode {
 .night-mode .button-box {
     background-color: rgb(67, 63, 63);
     -fx-background-color: rgb(67, 63, 63);
+}
+
+.night-mode .button-box .button {
+    -fx-background-color: rgb(110, 108, 108);
+    background-color: rgb(110, 108, 108);
+    -fx-text-fill: white;
 }

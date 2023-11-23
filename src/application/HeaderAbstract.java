@@ -155,6 +155,8 @@ public abstract class HeaderAbstract extends Application {
         return hyperlink;
     }
 
+    
+
 
     public HBox createHBoxDayNight(){
         Button sunButton = createIconButton("☀", this::setDayMode);
@@ -166,12 +168,23 @@ public abstract class HeaderAbstract extends Application {
     }
 
     public HBox Header(){
+
+        HBox sorbonne = new HBox();
+        String cheminImage = "logosorb.png";
+        Image image = new Image(getClass().getResourceAsStream(cheminImage));
+        ImageView imageView = new ImageView(image);
+
+
+
+
+        
+        imageView.setFitWidth(200);
+        imageView.setFitHeight(70);
+        sorbonne.getChildren().add(imageView);
         
         Screen screen = Screen.getPrimary();
-        //Hyperlink
         HBox hyperLinkHeaderHBoxLeft = createHyperLinkHBoxHeader();
 
-        //Mode jour nuit
         HBox headerRight = createHBox(30, createHBoxDayNight());
 
         headerRight.setMaxWidth(screen.getBounds().getWidth()*0.5);

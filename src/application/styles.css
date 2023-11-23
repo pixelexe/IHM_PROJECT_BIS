@@ -76,15 +76,9 @@ scene.night-mode {
 
 .root, 
 .bottom-vbox {
-    -fx-background-color: #6f6f6f;
-    background-color: #6f6f6f;
+    -fx-background-color: red;
+    background-color: red;
 }
-
-.bottom-vbox {
-    -fx-background-color: #d6d6d6;
-    background-color: #d6d6d6;
-}
-
 
 
 .title-label {

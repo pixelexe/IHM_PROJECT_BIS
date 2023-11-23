@@ -1,25 +1,31 @@
 .day-mode-button {
+    font-size: 20px;
     -fx-font-size: 20px;
 }
 .night-mode{
     -fx-text-fill: rgb(132, 0, 255);
     -fx-background-color: rgb(67, 63, 63);
+    background-color: rgb(67, 63, 63);
 }
 .root.night-mode{
     -fx-background-color: rgb(67, 63, 63);
+    background-color: rgb(67, 63, 63);
 
 }
 .button.night-mode{
     -fx-background-color: rgb(67, 63, 63);
+    background-color: rgb(67, 63, 63);
 }
 .ListeHBox.night-mode{
     -fx-text-fill: white;
-    fx-background-color: rgb(67, 63, 63);
+    background-color: rgb(67, 63, 63);
 }
 
 .ListeHBox.day-mode{
     -fx-text-fill: rgb(0, 0, 0);
-    fx-background-color: rgb(67, 63, 63);
+    background-color: rgb(67, 63, 63);
 }
 
-.day-mode{-fx-text-fill: white;}
+.day-mode{
+    -fx-text-fill: white;
+}

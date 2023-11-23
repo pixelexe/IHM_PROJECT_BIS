@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class PageAccueil extends HeaderAbstract {
     private static Label concepteurLabel;
     private static Label pourquoiMiageLabel;
-    private static VBox root;
+    private static VBox acceuil;
 
     @Override
     public void start(Stage primaryStage) {
@@ -27,10 +27,10 @@ public class PageAccueil extends HeaderAbstract {
         titleLabel.setFont(Font.font("Consolas", FontWeight.BOLD, 40));
 
         Hyperlink link = createImageHyperlinkRes("", "linkedin.png", "https://www.linkedin.com/in/nicolasherbaut/");
-        Hyperlink link2 = createImageHyperlinkPetit("", "sorbonne.png","https://www.pantheonsorbonne.fr/page-perso/nherbaut");
+        Hyperlink link2 = createImageHyperlinkRes2("", "sorbonne.png",
+                "https://www.pantheonsorbonne.fr/page-perso/nherbaut");
         HBox reseauBox = new HBox(20);
         reseauBox.getChildren().addAll(link, link2);
-
 
         concepteurLabel = createStyledLabel(getDaymode());
         concepteurLabel.setText(
@@ -38,7 +38,8 @@ public class PageAccueil extends HeaderAbstract {
         concepteurLabel.setFont(Font.font("Consolas", FontWeight.NORMAL, 18));
 
         pourquoiMiageLabel = createStyledLabel(getDaymode());
-        pourquoiMiageLabel.setText("J'ai créé ce site afin de permettre une facilitation de l'utilisation de mes ressources. Je mets à disposition sur ce site des exercices ainsi que des cours pour l'entiereté des mes étudiants en L1, L2, L3, M1 et M2");
+        pourquoiMiageLabel.setText(
+                "J'ai créé ce site afin de permettre une facilitation de l'utilisation de mes ressources. Je mets à disposition sur ce site des exercices ainsi que des cours pour l'entiereté des mes étudiants en L1, L2, L3, M1 et M2");
         pourquoiMiageLabel.setFont(Font.font("Consolas", FontWeight.NORMAL, 18));
 
         Text ressourcesTitle = new Text("\nRESSOURCES");
@@ -78,16 +79,16 @@ public class PageAccueil extends HeaderAbstract {
             currentStage.close();
         });
 
-        root = new VBox(20);
-        root.setStyle("-fx-padding: 20px;");
-        root.setAlignment(Pos.TOP_LEFT);
-        root.getChildren().addAll(Header(), titleLabel, reseauBox, concepteurLabel, pourquoiMiageLabel,
+        acceuil = new VBox(20);
+        acceuil.setStyle("-fx-padding: 20px;");
+        acceuil.setAlignment(Pos.TOP_LEFT);
+        acceuil.getChildren().addAll(Header(), titleLabel, reseauBox, concepteurLabel, pourquoiMiageLabel,
                 ressourcesTitle, button1,
                 button2);
 
-        Scene scene = new Scene(root, 1500, 700);
+        Scene scene = new Scene(acceuil, 1500, 700);
         updateStyles(concepteurLabel, pourquoiMiageLabel, scene);
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("accueil.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
         primaryStage.show();
@@ -97,18 +98,32 @@ public class PageAccueil extends HeaderAbstract {
     }
 
     public Hyperlink createImageHyperlinkRes(String text, String imageUrl, String url) {
-            Image image = new Image(getClass().getResourceAsStream(imageUrl));
-            ImageView imageView = new ImageView(image);
-    
-            imageView.setFitWidth(80);
-            imageView.setFitHeight(75);
-    
-            Hyperlink hyperlink = new Hyperlink(text);
-            hyperlink.setGraphic(imageView);
-            hyperlink.setOnAction(e -> getHostServices().showDocument(url));
-    
-            return hyperlink;
-        }
+        Image image = new Image(getClass().getResourceAsStream(imageUrl));
+        ImageView imageView = new ImageView(image);
+
+        imageView.setFitWidth(80);
+        imageView.setFitHeight(75);
+
+        Hyperlink hyperlink = new Hyperlink(text);
+        hyperlink.setGraphic(imageView);
+        hyperlink.setOnAction(e -> getHostServices().showDocument(url));
+
+        return hyperlink;
+    }
+
+    public Hyperlink createImageHyperlinkRes2(String text, String imageUrl, String url) {
+        Image image = new Image(getClass().getResourceAsStream(imageUrl));
+        ImageView imageView = new ImageView(image);
+
+        imageView.setFitWidth(76);
+        imageView.setFitHeight(70);
+
+        Hyperlink hyperlink = new Hyperlink(text);
+        hyperlink.setGraphic(imageView);
+        hyperlink.setOnAction(e -> getHostServices().showDocument(url));
+
+        return hyperlink;
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -120,8 +135,8 @@ public class PageAccueil extends HeaderAbstract {
         concepteurLabel.getStyleClass().add(style);
         pourquoiMiageLabel.getStyleClass().removeAll(getDaymode(), getNightMode());
         pourquoiMiageLabel.getStyleClass().add(style);
-        root.getStyleClass().removeAll(getDaymode(), getNightMode());
-        root.getStyleClass().add(style);
+        acceuil.getStyleClass().removeAll(getDaymode(), getNightMode());
+        acceuil.getStyleClass().add(style);
     }
 
     @Override

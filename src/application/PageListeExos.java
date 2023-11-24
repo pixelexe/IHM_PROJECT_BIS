@@ -26,7 +26,7 @@ public class PageListeExos extends HeaderAbstract {
 	private VBox exerciseContainer;
 	VBox root;
 	private List<HBox> listeHbox = new ArrayList<HBox>();
-
+	ComboBox comboBox2;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -35,64 +35,53 @@ public class PageListeExos extends HeaderAbstract {
 		root = createRootPane();
 		Scene scene = new Scene(createScrollPane(root), 400, 600);
 		scene.getStylesheets().add(getClass().getResource("stylesListeExos.css").toExternalForm());
-		//scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-		root.getStyleClass().addAll(getNightMode(),"root");
-		HBox hboxContainer = (HBox) root.getChildren().get(0);
-		for (Node buttonContainer : hboxContainer.getChildren()){
-			buttonContainer.getStyleClass().setAll(getNightMode());
-		}
-        primaryStage.setMaximized(true);
+		applyStyle(getDaymode());
+
+		primaryStage.setMaximized(true);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
+	@Override
+	public void applyStyle(String style) {
+		// HEADER
+		HBox Header = (HBox) root.getChildren().get(0);
+		// LABEL
+		Label label = (Label) root.getChildren().get(1);
 
-@Override
-    // public void applyStyle(String style) {
-    //     // Appliquer le style à root et à tous les composants pertinents
+		VBox Vbox = (VBox) root.getChildren().get(3);
 
-    //     root.getStyleClass().removeAll("day-mode", "night-mode");
-    //     root.getStyleClass().add(style);
-    //     applyStyleToChildren(root, style); // Appliquez récursivement le style aux enfants
-
-
-    //     levelComboBox.getStyleClass().removeAll("day-mode", "night-mode");
-    //     levelComboBox.getStyleClass().add(style);
-
-    //     for (Node child : exerciseContainer.getChildren()) {
-			
-    //         child.getStyleClass().removeAll("day-mode", "night-mode");
-    //         child.getStyleClass().add(style);
-    //     }
-
-    //     // Mettre à jour la scène pour refléter les changements de style
-    //     root.getScene().getRoot().requestLayout();
-    // }
-
-	public void applyStyle(String style){
-		for (HBox hboxList : listeHbox){
-			hboxList.getStyleClass().addAll(style);
-			Hyperlink test = (Hyperlink) hboxList.getChildren().get(0);
-			test.getStyleClass().removeAll(getDaymode(),getNightMode());
-			test.getStyleClass().addAll(style);
+		root.setStyle("-fx-background-color :rgb(131, 131, 131);");
+		Header.getStyleClass().removeAll(getDaymode(), getNightMode());
+		Header.getStyleClass().addAll(style, "header");
+		label.getStyleClass().removeAll(getDaymode(), getNightMode());
+		label.getStyleClass().addAll(style, "titlelabel");
+		Vbox.getStyleClass().removeAll(getDaymode(), getNightMode());
+		Vbox.getStyleClass().addAll(style, "linked");
+		for (HBox hBox : listeHbox) {
+			hBox.getStyleClass().removeAll(getDaymode(), getNightMode());
+			hBox.getStyleClass().addAll(style, "smallhbox");
+			Hyperlink hyper = (Hyperlink) hBox.getChildren().get(0);
+			hyper.getStyleClass().removeAll(getDaymode(), getNightMode());
+			hyper.getStyleClass().addAll(style, "linked");
 		}
 
 	}
 
-    private void applyStyleToChildren(Pane parent, String style) {
-        for (Node child : parent.getChildren()) {
-            if (child instanceof Pane) {
-                applyStyleToChildren((Pane) child, style);
-            }
-            child.getStyleClass().removeAll("day-mode", "night-mode");
-            
-        }
-    }
+	private void applyStyleToChildren(Pane parent, String style) {
+		for (Node child : parent.getChildren()) {
+			if (child instanceof Pane) {
+				applyStyleToChildren((Pane) child, style);
+			}
+			child.getStyleClass().removeAll("day-mode", "night-mode");
+
+		}
+	}
 
 	private VBox createRootPane() {
 		VBox root = new VBox();
 		root.setSpacing(20);
-		root.setPadding(new Insets(20));
+		// root.setPadding(new Insets(20));
 		root.setAlignment(Pos.CENTER);
 		root.setStyle("-fx-background-color: #f4f4f4;");
 
@@ -103,7 +92,7 @@ public class PageListeExos extends HeaderAbstract {
 
 		exerciseContainer = createExerciseContainer();
 
-		root.getChildren().addAll(Header(),titleLabel, levelComboBox, exerciseContainer);
+		root.getChildren().addAll(Header(), titleLabel, levelComboBox, exerciseContainer);
 		root.getStyleClass().addAll(getNightMode());
 
 		return root;
@@ -138,60 +127,78 @@ public class PageListeExos extends HeaderAbstract {
 		String selectedLevel = levelComboBox.getSelectionModel().getSelectedItem();
 		if (selectedLevel != null) {
 			switch (selectedLevel) {
-			case "L1":
-				listeHbox.clear();
-				listeHbox.add(addExercise("L1-Exo 1: Hello world"));
-				listeHbox.add(addExercise("L1-Exo 2: Premier programme"));
-				listeHbox.add(addExercise("L1-Exo 3: Conditions If-Else"));
-				listeHbox.add(addExercise("L1-Exo 4: Boucles While"));
-				listeHbox.add(addExercise("L1-Exo 5: Boucles For"));
-				listeHbox.add(addExercise("L1-Exo 6: Nombres"));
-				listeHbox.add(addExercise("L1-Exo 7: Chaines"));
-				listeHbox.add(addExercise("L1-Exo 8: Booléens"));
-				for (HBox hBox : listeHbox) {
-					hBox.getStyleClass().addAll("ListeHBox");
-				}
-				break;
-			case "L2":
-				addExercise("L2-Exo 1: Méthodes");
-				addExercise("L2-Exo 2: Programmation Orientée Objet");
-				addExercise("L2-Exo 3: Un Petit Chat");
-				addExercise("L2-Exo 4: Un Tableau");
-				addExercise("L2-Exo 5: Parcourir un tableau for/while");
-				addExercise("L2-Exo 6: Parcourir un tableau for-each");
-				addExercise("L2-Exo 7: Les Dictionnaires");
-				break;
-			case "L3":
-				addExercise("L3-Exo 1: Structure Fondamentale du Langage");
-				addExercise("L3-Exo 2: Poker Fermé");
-				addExercise("L3-Exo 3: Première Classe");
-				addExercise("L3-Exo 4: Ascenceurs de Tolbiac");
-				addExercise("L3-Exo 5: Les Types Primitifs");
-				addExercise("L3-Exo 6: Algorithme de César");
-				addExercise("L2-Exo 7: Reconnaissance de mains dans un jeu de Poker");
-				addExercise("L2-Exo 8: Les Méthodes");
-				addExercise("L2-Exo 9: Lambda 1");
-				addExercise("L2-Exo 10: Lambda 2");
-				break;
-			case "M1":
-				addExercise("M1-Ex 1: Flux Java");
-				addExercise("M1-Exo 2: Réflexion");
-				addExercise("M1-Exo 3: Gestionnaire de Classes");
-				addExercise("M1-Exo 4: Une Exception avancée");
-				addExercise("M1-Exo 5: Programmation Concurrente");
-				addExercise("M1-Exo 6: Injection de Dépendance");
-				addExercise("M2-Exo 1: Introspection et manipulation d'une Classe");
-				addExercise("M2-Exo 2: Conception orientée objet avancée");
-				break;
-			case "M2":
-				addExercise("M1-Exo 7: Introduction au Machine Learning");
-				addExercise("M2-Exo 4: Introduction à la Blockchain");
-				addExercise("M2-Exo 3: Microservice et Conteneurs");
-				addExercise("M2-Exo 4: Intégration de systèmes d'entreprise");
-				addExercise("M2-Exo 5: Test avancés");
-				addExercise("M2-Exo 6: Machine Learning en Java");
-				addExercise("M2-Exo 7: Blockchain en Java");
-				break;
+				case "L1":
+					listeHbox.clear();
+					listeHbox.add(addExercise("L1-Exo 1: Hello world"));
+					listeHbox.add(addExercise("L1-Exo 2: Premier programme"));
+					listeHbox.add(addExercise("L1-Exo 3: Conditions If-Else"));
+					listeHbox.add(addExercise("L1-Exo 4: Boucles While"));
+					listeHbox.add(addExercise("L1-Exo 5: Boucles For"));
+					listeHbox.add(addExercise("L1-Exo 6: Nombres"));
+					listeHbox.add(addExercise("L1-Exo 7: Chaines"));
+					listeHbox.add(addExercise("L1-Exo 8: Booléens"));
+					for (HBox hBox : listeHbox) {
+						hBox.getStyleClass().addAll("ListeHBox");
+					}
+					break;
+				case "L2":
+					listeHbox.clear();
+					listeHbox.add(addExercise("L2-Exo 1: Méthodes"));
+					listeHbox.add(addExercise("L2-Exo 2: Programmation Orientée Objet"));
+					listeHbox.add(addExercise("L2-Exo 3: Un Petit Chat"));
+					listeHbox.add(addExercise("L2-Exo 4: Un Tableau"));
+					listeHbox.add(addExercise("L2-Exo 5: Parcourir un tableau for/while"));
+					listeHbox.add(addExercise("L2-Exo 6: Parcourir un tableau for-each"));
+					listeHbox.add(addExercise("L2-Exo 7: Les Dictionnaires"));
+					for (HBox hBox : listeHbox) {
+						hBox.getStyleClass().addAll("ListeHBox");
+					}
+					break;
+				case "L3":
+					listeHbox.clear();
+					listeHbox.add(addExercise("L3-Exo 1: Structure Fondamentale du Langage"));
+					listeHbox.add(addExercise("L3-Exo 2: Poker Fermé"));
+					listeHbox.add(addExercise("L3-Exo 3: Première Classe"));
+					listeHbox.add(addExercise("L3-Exo 4: Ascenceurs de Tolbiac"));
+					listeHbox.add(addExercise("L3-Exo 5: Les Types Primitifs"));
+					listeHbox.add(addExercise("L3-Exo 6: Algorithme de César"));
+					listeHbox.add(addExercise("L2-Exo 7: Reconnaissance de mains dans un jeu de Poker"));
+					listeHbox.add(addExercise("L2-Exo 8: Les Méthodes"));
+					listeHbox.add(addExercise("L2-Exo 9: Lambda 1"));
+					listeHbox.add(addExercise("L2-Exo 10: Lambda 2"));
+					for (HBox hBox : listeHbox) {
+						hBox.getStyleClass().addAll("ListeHBox");
+					}
+					break;
+				case "M1":
+					listeHbox.clear();
+					listeHbox.add(addExercise("M1-Ex 1: Flux Java"));
+					listeHbox.add(addExercise("M1-Exo 2: Réflexion"));
+					listeHbox.add(addExercise("M1-Exo 3: Gestionnaire de Classes"));
+					listeHbox.add(addExercise("M1-Exo 4: Une Exception avancée"));
+					listeHbox.add(addExercise("M1-Exo 5: Programmation Concurrente"));
+					listeHbox.add(addExercise("M1-Exo 6: Injection de Dépendance"));
+					listeHbox.add(addExercise("M1-Exo 7: Introduction au Machine Learning"));
+
+					for (HBox hBox : listeHbox) {
+						hBox.getStyleClass().addAll("ListeHBox");
+					}
+					break;
+				case "M2":
+					listeHbox.clear();
+					listeHbox.add(addExercise("M2-Exo 1: Introspection et manipulation d'une Classe"));
+					listeHbox.add(addExercise("M2-Exo 2: Conception orientée objet avancée"));
+					listeHbox.add(addExercise("M1-Exo 3: Introduction au Machine Learning"));
+					listeHbox.add(addExercise("M2-Exo 4: Introduction à la Blockchain"));
+					listeHbox.add(addExercise("M2-Exo 5: Microservice et Conteneurs"));
+					listeHbox.add(addExercise("M2-Exo 6: Intégration de systèmes d'entreprise"));
+					listeHbox.add(addExercise("M2-Exo 7: Test avancés"));
+					listeHbox.add(addExercise("M2-Exo 8: Machine Learning en Java"));
+					listeHbox.add(addExercise("M2-Exo 9: Blockchain en Java"));
+					for (HBox hBox : listeHbox) {
+						hBox.getStyleClass().addAll("ListeHBox");
+					}
+					break;
 			}
 		}
 	}
@@ -199,7 +206,7 @@ public class PageListeExos extends HeaderAbstract {
 	private HBox addExercise(String title) {
 		HBox hbox = new HBox();
 		hbox.setAlignment(Pos.CENTER);
-		//hbox.setStyle("-fx-background-color: #d0d0d0; -fx-background-radius: 10;");
+		// hbox.setStyle("-fx-background-color: #d0d0d0; -fx-background-radius: 10;");
 		hbox.setSpacing(20);
 		hbox.setPadding(new Insets(5));
 
@@ -215,7 +222,6 @@ public class PageListeExos extends HeaderAbstract {
 			hyperlink.setCursor(Cursor.DEFAULT);
 			hyperlink.setStyle("-fx-font-size: 16px;");
 		});
-		
 
 		hbox.getChildren().add(hyperlink);
 
@@ -227,8 +233,8 @@ public class PageListeExos extends HeaderAbstract {
 		Button hourglassButton = new Button();
 		hourglassButton.setGraphic(hourglassView);
 		hourglassButton.setStyle("-fx-background-color: transparent;");
-		//hourglassButton.setOnAction(e -> handleHourglassClick(title));
-		hourglassButton.setOnAction(e ->{
+		// hourglassButton.setOnAction(e -> handleHourglassClick(title));
+		hourglassButton.setOnAction(e -> {
 			Image hourglassImage2 = new Image(getClass().getResourceAsStream(hourGlass.nextImage()));
 			hourglassView.setImage(hourglassImage2);
 			// hbox.getChildren().remove(hourglassButton);
@@ -260,9 +266,11 @@ public class PageListeExos extends HeaderAbstract {
 		System.out.println("Exercice cliqué : " + exerciseTitle);
 	}
 
-	/*private void handleHourglassClick(String exerciseTitle) {
-		System.out.println("Sablier cliqué pour l'exercice : " + exerciseTitle);
-	}*/
+	/*
+	 * private void handleHourglassClick(String exerciseTitle) {
+	 * System.out.println("Sablier cliqué pour l'exercice : " + exerciseTitle);
+	 * }
+	 */
 
 	public static void main(String[] args) {
 		launch(args);

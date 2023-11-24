@@ -82,6 +82,20 @@ public abstract class HeaderAbstract extends Application {
         return hyperlink;
     }
 
+    public Hyperlink createImageHyperlinkSorb(String text, String imageUrl, String url) {
+        Image image = new Image(getClass().getResourceAsStream(imageUrl));
+        ImageView imageView = new ImageView(image);
+
+        imageView.setFitWidth(280);
+        imageView.setFitHeight(85);
+
+        Hyperlink hyperlink = new Hyperlink(text);
+        hyperlink.setGraphic(imageView);
+        hyperlink.setOnAction(e -> getHostServices().showDocument(url));
+
+        return hyperlink;
+    }
+
     // Méthode pour créer une HBox avec un espacement spécifié et des enfants
     public HBox createHBox(int spacing, Node... children) {
         HBox hbox = new HBox(spacing);
@@ -206,20 +220,13 @@ public abstract class HeaderAbstract extends Application {
 
     // Méthode pour créer l'en-tête de la page
     public HBox Header() {
-        // Création de l'image du logo Sorbonne
         HBox sorbonne = new HBox();
-        String cheminImage = "logosorb.png";
-        Image image = new Image(getClass().getResourceAsStream(cheminImage));
-        ImageView imageView = new ImageView(image);
-
-        // Ajustement de la taille de l'image
-        imageView.setFitWidth(220 * 1.2);
-        imageView.setFitHeight(70 * 1.2);
-        sorbonne.getChildren().add(imageView);
+        Hyperlink sorb = createImageHyperlinkSorb("", "logosorb.png",
+                "https://miage.pantheonsorbonne.fr/miage-sorbonne");
+        sorbonne.getChildren().add(sorb);
 
         // Obtention des dimensions de l'écran
         Screen screen = Screen.getPrimary();
-
         // Création des liens hypertextes pour la navigation
         HBox hyperLinkHeaderHBoxLeft = createHyperLinkHBoxHeader();
 
@@ -240,6 +247,8 @@ public abstract class HeaderAbstract extends Application {
         HBox.setHgrow(headerRight, javafx.scene.layout.Priority.ALWAYS);
         HBox.setHgrow(sorbonne, javafx.scene.layout.Priority.ALWAYS);
         HBox.setHgrow(hyperLinkHeaderHBoxLeft, javafx.scene.layout.Priority.ALWAYS);
+        headerHBox.setStyle("-fx-padding: 20px;");
+
 
         return headerHBox;
     }

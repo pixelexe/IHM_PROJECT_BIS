@@ -92,7 +92,6 @@ public class PageAccueil extends HeaderAbstract {
 
         // Configuration de la mise en page de la page d'accueil
         acceuil = new VBox(20);
-        acceuil.setStyle("-fx-padding: 20px;");
         acceuil.setAlignment(Pos.TOP_LEFT);
         acceuil.getChildren().addAll(Header(), titleLabel, reseauBox, concepteurLabel, pourquoiMiageLabel,
                 ressourcesTitle, button1,

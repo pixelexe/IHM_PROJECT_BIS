@@ -1,31 +1,46 @@
-.day-mode.linked{
+.day-mode.linked {
     -fx-text-fill: rgb(0, 170, 255);
     -fx-background-color: rgb(209, 209, 209);
+    background-color: rgb(209, 209, 209);
     -fx-background-radius: 15px;
     -fx-border-radius: 15px;
+    border-radius: 15px;
 }
-.night-mode.linked{
+
+.night-mode.linked {
     -fx-text-fill: rgb(0, 170, 255);
     -fx-background-color: rgb(80, 80, 80);
+    background-color: rgb(80, 80, 80);
     -fx-background-radius: 15px;
     -fx-border-radius: 15px;
+    border-radius: 15px;
 }
-.day-mode.smallhbox{
-    -fx-background-color : rgb(209, 209, 209);
+
+.day-mode.smallhbox {
+    -fx-background-color: rgb(209, 209, 209);
+    background-color: rgb(209, 209, 209);
 }
-.night-mode.smallhbox{
-    -fx-background-color : rgb(80, 80, 80);
+
+.night-mode.smallhbox {
+    -fx-background-color: rgb(80, 80, 80);
+    background-color: rgb(80, 80, 80);
 }
-.day-mode.titlelabel{
-    -fx-background-color : rgb(131, 131, 131);
-    -fx-text-fill : beige;
+
+.day-mode.titlelabel {
+    -fx-background-color: rgb(131, 131, 131);
+    background-color: rgb(131, 131, 131);
+    -fx-text-fill: beige;
 }
-.night-mode.titlelabel{
-    -fx-background-color : rgb(131, 131, 131);;
-    -fx-text-fill : white;
+
+.night-mode.titlelabel {
+    -fx-background-color: rgb(131, 131, 131);
+    background-color: rgb(131, 131, 131);
+    -fx-text-fill: white;
 }
-.night-mode.header{
-    -fx-background-color : rgb(131, 131, 131);
+
+.night-mode.header {
+    -fx-background-color: rgb(131, 131, 131);
+    background-color: rgb(131, 131, 131);
 }
 
 .day-mode {
@@ -51,5 +66,3 @@
     font-size: 18px;
     -fx-font-size: 18px;
 }
-
-

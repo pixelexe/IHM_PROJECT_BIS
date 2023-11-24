@@ -22,7 +22,6 @@
     -fx-font-size: 18px;
 }
 
-
 .root.day-mode {
     -fx-background-color: white;
     background-color: white;
@@ -32,7 +31,6 @@
 scene.night-mode {
     -fx-background-color: rgb(67, 63, 63);
     background-color: rgb(67, 63, 63);
-
 }
 
 .text-area.two.night-mode {

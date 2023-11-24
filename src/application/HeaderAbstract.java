@@ -175,7 +175,7 @@ public abstract class HeaderAbstract extends Application {
         Image image = new Image(getClass().getResourceAsStream(cheminImage));
         ImageView imageView = new ImageView(image);
         
-        imageView.setFitWidth(200*1.2);
+        imageView.setFitWidth(220*1.2);
         imageView.setFitHeight(70*1.2);
         sorbonne.getChildren().add(imageView);
         

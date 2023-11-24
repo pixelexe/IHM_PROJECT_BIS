@@ -101,7 +101,7 @@ public class PageAccueil extends HeaderAbstract {
         // Configuration de la scène
         Scene scene = new Scene(acceuil, 1500, 700);
         updateStyles(concepteurLabel, pourquoiMiageLabel, scene);
-        scene.getStylesheets().add(getClass().getResource("accueil.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("PageAccueil.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
         primaryStage.show();

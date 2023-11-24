@@ -227,8 +227,8 @@ public class PageListeExos extends HeaderAbstract {
 
 		Image hourglassImage = new Image(getClass().getResourceAsStream("start.png"));
 		ImageView hourglassView = new ImageView();
-		hourglassView.setFitWidth(16);
-		hourglassView.setFitHeight(16);
+		hourglassView.setFitWidth(25);
+		hourglassView.setFitHeight(25);
 
 		Button hourglassButton = new Button();
 		hourglassButton.setGraphic(hourglassView);

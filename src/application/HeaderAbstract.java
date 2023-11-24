@@ -173,10 +173,6 @@ public abstract class HeaderAbstract extends Application {
         String cheminImage = "logosorb.png";
         Image image = new Image(getClass().getResourceAsStream(cheminImage));
         ImageView imageView = new ImageView(image);
-
-
-
-
         
         imageView.setFitWidth(200);
         imageView.setFitHeight(70);
@@ -188,10 +184,11 @@ public abstract class HeaderAbstract extends Application {
         HBox headerRight = createHBox(30, createHBoxDayNight());
 
         headerRight.setMaxWidth(screen.getBounds().getWidth()*0.5);
-        hyperLinkHeaderHBoxLeft.setMaxWidth(screen.getBounds().getWidth()*0.5);
+        sorbonne.setMaxWidth(screen.getBounds().getWidth()*0.2);
+        hyperLinkHeaderHBoxLeft.setMaxWidth(screen.getBounds().getWidth()*0.4);
         headerRight.setAlignment(Pos.CENTER_RIGHT);
 
-        HBox headerHBox = new HBox(hyperLinkHeaderHBoxLeft,headerRight);
+        HBox headerHBox = new HBox(hyperLinkHeaderHBoxLeft,sorbonne,headerRight);
         HBox.setHgrow(headerRight, javafx.scene.layout.Priority.ALWAYS);
         HBox.setHgrow(hyperLinkHeaderHBoxLeft, javafx.scene.layout.Priority.ALWAYS);
         return headerHBox;

@@ -30,7 +30,7 @@ public class PageListeExos extends HeaderAbstract {
     @Override
     public void start(Stage primaryStage) {
         // Configuration de la scène principale avec le titre et la taille spécifiés
-        primaryStage.setTitle("Exercices Université");
+        primaryStage.setTitle("MIAGE CODE CRAFTING");
 
         // Création du conteneur principal
         root = createRootPane();

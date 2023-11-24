@@ -79,6 +79,7 @@ public class PageExercice extends HeaderAbstract {
         // Création de la scène
         Scene scene = new Scene(borderPane, 900, 700);
         scene.getStylesheets().add(getClass().getResource("stylePageExercice.css").toExternalForm());
+        primaryStage.setTitle("MIAGE CODE CRAFTING");
 
         // Configuration du mode jour/nuit
         setDayMode();
@@ -141,7 +142,7 @@ public class PageExercice extends HeaderAbstract {
             lienHyper.setOnAction(event -> getHostServices().showDocument(lienHyper.getText()));
             lienaide.getChildren().add(lienHyper);
 
-            outputTextArea.setText("N'oubliez pas d'utiliser System.out.println();\nVotre code doit avoir un MAIN !\n ");
+            outputTextArea.setText("N'oubliez pas d'utiliser System.out.println();\nVotre code doit avoir un MAIN !\nPour plus d'information voir le cours chapitre 1 : Introduction  ");
             outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 0.6);");
             outputTextArea.getStyleClass().addAll("outputTextArea", "consolas-font");
 

@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 public class PageExercice extends HeaderAbstract {
 
+    // Déclaration des éléments de l'interface utilisateur
     private TextArea inputTextArea;
     private TextArea outputTextArea;
     private VBox root;
@@ -20,10 +21,12 @@ public class PageExercice extends HeaderAbstract {
     @Override
     public void start(Stage primaryStage) {
 
+        // Création de l'en-tête de la page
         Label titleLabel = createLabel(" L3 Exercice 1 : Hello World");
         titleLabel.getStyleClass().addAll("title-label", "consolas-font");
         root = createVBox(10, Header(), titleLabel);
 
+        // Création de la zone de texte pour l'entrée du code Java
         inputTextArea = createStyledTextArea(getDaymode());
         inputTextArea.setText("public class HelloWorld {\n" +
                 "    public static void main(String args[]) \n" +
@@ -33,49 +36,59 @@ public class PageExercice extends HeaderAbstract {
                 "}");
         inputTextArea.getStyleClass().add("consolas-font");
 
+        // Création de la zone de texte pour la sortie du code
         outputTextArea = createStyledTextArea(getDaymode());
-        outputTextArea.setText("Output will appear here ...");
+        outputTextArea.setText("Le résultat apparaîtra ici...");
         outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 0.6);");
         outputTextArea.getStyleClass().addAll("outputTextArea", "consolas-font");
 
+        // Gestion des changements dans la zone de sortie
         outputTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.equals("Output will appear here ...")) {
+            if (newValue.equals("Le résultat apparaîtra ici...")) {
                 outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 0.6);");
             } else {
                 outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 1.0);");
             }
             if (newValue.isEmpty()) {
-                
-                outputTextArea.setText("Output will appear here ...");
-                        if (this.dayOrNight == false){
-            outputTextArea.setStyle("-fx-text-fill: white");
-        }
+                outputTextArea.setText("Le résultat apparaîtra ici...");
+                if (this.dayOrNight == false){
+                    outputTextArea.setStyle("-fx-text-fill: white");
+                }
             }
         });
 
+        // Création de la boîte de boutons
         HBox buttonBox = createStyledButtonBox(getDaymode());
 
-        Label outputLabel = createOutputLabel(" Output : ");
+        // Création de l'étiquette pour la sortie
+        Label outputLabel = createOutputLabel(" Sortie : ");
         outputLabel.getStyleClass().add("output-label");
+
+        // Création de la boîte principale du bas de la page
         bottomVBox = createVBox(0, buttonBox, outputLabel, outputTextArea);
         bottomVBox.getChildren().get(0).getStyleClass().add("buttonVBox");
         bottomVBox.getChildren().get(0).getStyleClass().add("output");
 
+        // Création du panneau de bord principal
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(root);
         borderPane.setCenter(inputTextArea);
         borderPane.setBottom(bottomVBox);
 
+        // Création de la scène
         Scene scene = new Scene(borderPane, 900, 700);
         scene.getStylesheets().add(getClass().getResource("stylePageExercice.css").toExternalForm());
 
+        // Configuration du mode jour/nuit
         setDayMode();
 
+        // Configuration de la scène principale
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
         primaryStage.show();
     }
 
+    // Méthode pour appliquer un style spécifié
     public void applyStyle(String style) {
         if (style == getDaymode()){
             this.dayOrNight = true;
@@ -109,22 +122,23 @@ public class PageExercice extends HeaderAbstract {
         outputTextArea.getStyleClass().add(style);
     }
 
+    // Méthode pour créer la boîte de boutons stylisée
     public HBox createStyledButtonBox(String style) {
         HBox buttonBox = new HBox(10);
-
         buttonBox.setAlignment(Pos.CENTER_LEFT);
-
         buttonBox.getStyleClass().removeAll(getDaymode(), getNightMode());
         buttonBox.getStyleClass().add("title-label");
 
+        // Création du bouton d'action
         MenuButton actionButton = createActionMenuButton();
-        Button getInstructionsButton = createButton("Get Instructions");
-        Button runButton = createGreenButton("RUN");
-        Button stopButton = createRedButton("STOP");
+        Button getInstructionsButton = createButton("Obtenir les instructions");
+        Button runButton = createGreenButton("EXÉCUTER");
+        Button stopButton = createRedButton("ARRÊTER");
 
         runButton.getStyleClass().add("green-button");
         stopButton.getStyleClass().add("red-button");
 
+        // Ajout des boutons à la boîte
         buttonBox.getChildren().addAll(
                 actionButton,
                 getInstructionsButton,
@@ -132,20 +146,22 @@ public class PageExercice extends HeaderAbstract {
                 runButton,
                 stopButton);
 
+        // Définition des actions des boutons
         runButton.setOnAction(e -> runCode());
         stopButton.setOnAction(e -> stopCode());
         buttonBox.setPadding(new Insets(20, 20, 20, 10));
         return buttonBox;
     }
 
+    // Méthode pour créer le bouton de menu d'action
     public MenuButton createActionMenuButton() {
         MenuButton menuButton = new MenuButton("Action");
         menuButton.getItems().addAll(
-                new MenuItem("Open in a new Tab"),
-                new MenuItem("Save as a new Snip"),
-                new MenuItem("My snips"),
-                new MenuItem("Download as Maven"),
-                new MenuItem("Request Help with this code"));
+                new MenuItem("Ouvrir dans un nouvel onglet"),
+                new MenuItem("Enregistrer en tant que nouvelle capture"),
+                new MenuItem("Mes captures"),
+                new MenuItem("Télécharger en tant que Maven"),
+                new MenuItem("Demander de l'aide pour ce code"));
 
         menuButton.setPrefWidth(120);
         menuButton.setPrefHeight(30);
@@ -155,27 +171,31 @@ public class PageExercice extends HeaderAbstract {
         return menuButton;
     }
 
+    // Méthode pour créer l'étiquette de sortie
     private Label createOutputLabel(String text) {
         Label label = new Label(text);
         label.getStyleClass().add("title-label");
         return label;
     }
 
+    // Méthode pour exécuter le code
     public void runCode() {
-        
-        String codeOutput = "Hello world !";
+        // Simulation de l'exécution du code et affichage du résultat
+        String codeOutput = "Bonjour le monde !";
         outputTextArea.setText(codeOutput);
         if (this.dayOrNight == false){
             outputTextArea.setStyle("-fx-text-fill: white");
         }
     }
 
+    // Méthode pour arrêter l'exécution du code
     public void stopCode() {
+        // Effacement de la zone de sortie
         outputTextArea.clear();
     }
 
+    // Méthode principale pour lancer l'application
     public static void main(String[] args) {
         launch(args);
     }
-
 }

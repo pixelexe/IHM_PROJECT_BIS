@@ -14,6 +14,7 @@ public class PageExercice extends HeaderAbstract {
     private TextArea inputTextArea;
     private TextArea outputTextArea;
     private VBox root;
+    private VBox bottomVBox;
 
     @Override
     public void start(Stage primaryStage) {
@@ -46,9 +47,13 @@ public class PageExercice extends HeaderAbstract {
         });
 
         HBox buttonBox = createStyledButtonBox(getDaymode());
+
+
+
+        
         Label outputLabel=createOutputLabel(" Output : ");
         outputLabel.getStyleClass().add("output-label");
-        VBox bottomVBox = createVBox(0, buttonBox, outputLabel, outputTextArea);
+        bottomVBox = createVBox(0, buttonBox, outputLabel, outputTextArea);
         bottomVBox.getChildren().get(0).getStyleClass().add("buttonVBox");
         bottomVBox.getChildren().get(0).getStyleClass().add("output");
         
@@ -68,6 +73,17 @@ public class PageExercice extends HeaderAbstract {
     }
 
     public void applyStyle(String style) {
+        HBox buttonBox = (HBox) this.bottomVBox.getChildren().get(0);
+        buttonBox.getStyleClass().removeAll(getDaymode(), getNightMode());
+        buttonBox.getStyleClass().addAll("buttonbox2",style);
+
+        Label labelOutPut = (Label) this.bottomVBox.getChildren().get(1);
+        labelOutPut.getStyleClass().removeAll(getDaymode(), getNightMode());
+        labelOutPut.getStyleClass().addAll("labeloutput",style);
+
+        this.bottomVBox.getStyleClass().removeAll(getDaymode(), getNightMode());
+        this.bottomVBox.getStyleClass().addAll("labeloutput",style);
+
         inputTextArea.getStyleClass().removeAll(getDaymode(), getNightMode());
         inputTextArea.getStyleClass().add(style);
         root.getStyleClass().removeAll(getDaymode(), getNightMode());

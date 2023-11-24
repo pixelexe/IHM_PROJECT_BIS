@@ -77,3 +77,20 @@
 	-fx-text-fill: white;
 }
 
+.buttonbox2.day-mode{
+    -fx-background-color : white;
+}
+.buttonbox2.night-mode{
+    -fx-control-inner-background: rgb(67.0, 63.0, 63.0);
+}
+
+
+.labeloutput.day-mode{
+    -fx-background-color : white;
+    -fx-border-color : white;
+}
+.labeloutput.night-mode{
+    -fx-background-color: rgb(67.0, 63.0, 63.0);
+    -fx-border-color:rgb(67.0, 63.0, 63.0);
+    
+}

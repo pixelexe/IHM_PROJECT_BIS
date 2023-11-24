@@ -218,15 +218,14 @@ public abstract class HeaderAbstract extends Application {
         return modeDayNightHeaderHBoxRight;
     }
 
-    // Méthode pour créer l'en-tête de la page
+    // Méthode pour créer l'en-tête de la page dans une classe abstraite
     public HBox Header() {
         HBox sorbonne = new HBox();
         Hyperlink sorb = createImageHyperlinkSorb("", "logosorb.png",
                 "https://miage.pantheonsorbonne.fr/miage-sorbonne");
         sorbonne.getChildren().add(sorb);
-
-        // Obtention des dimensions de l'écran
         Screen screen = Screen.getPrimary();
+
         // Création des liens hypertextes pour la navigation
         HBox hyperLinkHeaderHBoxLeft = createHyperLinkHBoxHeader();
 
@@ -248,7 +247,6 @@ public abstract class HeaderAbstract extends Application {
         HBox.setHgrow(sorbonne, javafx.scene.layout.Priority.ALWAYS);
         HBox.setHgrow(hyperLinkHeaderHBoxLeft, javafx.scene.layout.Priority.ALWAYS);
         headerHBox.setStyle("-fx-padding: 20px;");
-
 
         return headerHBox;
     }

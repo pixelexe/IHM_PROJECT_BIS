@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javafx.geometry.Insets;
@@ -14,10 +15,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.stage.Stage;
 
 public class PageListeExos extends HeaderAbstract {
@@ -26,7 +25,6 @@ public class PageListeExos extends HeaderAbstract {
 	private VBox exerciseContainer;
 	VBox root;
 	private List<HBox> listeHbox = new ArrayList<HBox>();
-	ComboBox comboBox2;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -44,11 +42,8 @@ public class PageListeExos extends HeaderAbstract {
 
 	@Override
 	public void applyStyle(String style) {
-		// HEADER
 		HBox Header = (HBox) root.getChildren().get(0);
-		// LABEL
 		Label label = (Label) root.getChildren().get(1);
-
 		VBox Vbox = (VBox) root.getChildren().get(3);
 
 		root.setStyle("-fx-background-color :rgb(131, 131, 131);");
@@ -65,23 +60,11 @@ public class PageListeExos extends HeaderAbstract {
 			hyper.getStyleClass().removeAll(getDaymode(), getNightMode());
 			hyper.getStyleClass().addAll(style, "linked");
 		}
-
-	}
-
-	private void applyStyleToChildren(Pane parent, String style) {
-		for (Node child : parent.getChildren()) {
-			if (child instanceof Pane) {
-				applyStyleToChildren((Pane) child, style);
-			}
-			child.getStyleClass().removeAll("day-mode", "night-mode");
-
-		}
 	}
 
 	private VBox createRootPane() {
 		VBox root = new VBox();
 		root.setSpacing(20);
-		// root.setPadding(new Insets(20));
 		root.setAlignment(Pos.CENTER);
 		root.setStyle("-fx-background-color: #f4f4f4;");
 
@@ -123,11 +106,10 @@ public class PageListeExos extends HeaderAbstract {
 
 	private void updateExercises() {
 		exerciseContainer.getChildren().clear();
-	
 		String selectedLevel = levelComboBox.getSelectionModel().getSelectedItem();
 		if (selectedLevel != null) {
-			listeHbox.clear(); // Clear the list before adding exercises
-	
+			listeHbox.clear();
+
 			switch (selectedLevel) {
 				case "L2":
 					addExercisesForLevel("L2", 12);
@@ -141,23 +123,38 @@ public class PageListeExos extends HeaderAbstract {
 				case "M2":
 					addExercisesForLevel("M2", 12);
 					break;
-				// Add more cases for other levels if needed
-	
-				// Remove the case for "L1" to exclude it
 			}
 		}
 	}
-	
+
 	private void addExercisesForLevel(String level, int numberOfExercises) {
+		List<String> uniqueSubjects = Arrays.asList("Java Programming", "Object-Oriented Programming", "Advanced Java",
+				"Java Mastery");
+
 		for (int i = 1; i <= numberOfExercises; i++) {
-			String exerciseName = String.format("%s-Exo %d: Exercise Title", level, i);
+			String subject = uniqueSubjects.get(i % uniqueSubjects.size());
+			String exerciseName = String.format("%s-Exo %d: %s", level, i, subject);
 			listeHbox.add(addExercise(exerciseName));
 		}
-	
+
 		for (HBox hBox : listeHbox) {
 			hBox.getStyleClass().addAll("ListeHBox");
 		}
 	}
+
+	private void handleExerciseClick(String exerciseTitle) {
+		System.out.println("Exercice cliqué : " + exerciseTitle);
+		
+		Button bouton = new Button("n");
+		
+		PageExercice pageExercice = new PageExercice();
+		Stage stage = new Stage();
+		pageExercice.start(stage);
+		
+		Stage currentStage = (Stage) bouton.getScene().getWindow();
+		currentStage.close();
+	}
+	
 	
 
 	private HBox addExercise(String title) {
@@ -208,10 +205,6 @@ public class PageListeExos extends HeaderAbstract {
 
 		exerciseContainer.getChildren().add(hbox);
 		return hbox;
-	}
-
-	private void handleExerciseClick(String exerciseTitle) {
-		System.out.println("Exercice cliqué : " + exerciseTitle);
 	}
 
 	public static void main(String[] args) {

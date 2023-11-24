@@ -15,6 +15,7 @@ public class PageExercice extends HeaderAbstract {
     private TextArea outputTextArea;
     private VBox root;
     private VBox bottomVBox;
+    private boolean dayOrNight;
 
     @Override
     public void start(Stage primaryStage) {
@@ -44,7 +45,11 @@ public class PageExercice extends HeaderAbstract {
                 outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 1.0);");
             }
             if (newValue.isEmpty()) {
+
                 outputTextArea.setText("Output will appear here ...");
+                if (this.dayOrNight == false) {
+                    outputTextArea.setStyle("-fx-text-fill: white");
+                }
             }
         });
 
@@ -72,6 +77,11 @@ public class PageExercice extends HeaderAbstract {
     }
 
     public void applyStyle(String style) {
+        if (style == getDaymode()) {
+            this.dayOrNight = true;
+        } else {
+            this.dayOrNight = false;
+        }
         HBox buttonBox = (HBox) this.bottomVBox.getChildren().get(0);
         buttonBox.getStyleClass().removeAll(getDaymode(), getNightMode());
         buttonBox.getStyleClass().addAll("buttonbox2", style);
@@ -150,8 +160,12 @@ public class PageExercice extends HeaderAbstract {
     }
 
     public void runCode() {
+
         String codeOutput = "Hello world !";
         outputTextArea.setText(codeOutput);
+        if (this.dayOrNight == false) {
+            outputTextArea.setStyle("-fx-text-fill: white");
+        }
     }
 
     public void stopCode() {

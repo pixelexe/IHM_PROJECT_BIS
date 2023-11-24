@@ -4,7 +4,7 @@
 }
 
 .outputTextArea {
-    -fx-pref-height: 150.0px;
+    -fx-pref-height: 200px;
 }
 
 .text-area.day-mode {

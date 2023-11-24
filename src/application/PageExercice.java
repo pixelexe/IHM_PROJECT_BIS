@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class PageExercice extends HeaderAbstract {
@@ -38,20 +39,20 @@ public class PageExercice extends HeaderAbstract {
 
         // Création de la zone de texte pour la sortie du code
         outputTextArea = createStyledTextArea(getDaymode());
-        outputTextArea.setText("Le résultat apparaîtra ici...");
+        outputTextArea.setText("Output will appear here...");
         outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 0.6);");
         outputTextArea.getStyleClass().addAll("outputTextArea", "consolas-font");
 
         // Gestion des changements dans la zone de sortie
         outputTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.equals("Le résultat apparaîtra ici...")) {
+            if (newValue.equals("Output will appear here...")) {
                 outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 0.6);");
             } else {
                 outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 1.0);");
             }
             if (newValue.isEmpty()) {
-                outputTextArea.setText("Le résultat apparaîtra ici...");
-                if (this.dayOrNight == false){
+                outputTextArea.setText("Output will appear here...");
+                if (this.dayOrNight == false) {
                     outputTextArea.setStyle("-fx-text-fill: white");
                 }
             }
@@ -61,7 +62,7 @@ public class PageExercice extends HeaderAbstract {
         HBox buttonBox = createStyledButtonBox(getDaymode());
 
         // Création de l'étiquette pour la sortie
-        Label outputLabel = createOutputLabel(" Sortie : ");
+        Label outputLabel = createOutputLabel(" Output : ");
         outputLabel.getStyleClass().add("output-label");
 
         // Création de la boîte principale du bas de la page
@@ -90,10 +91,9 @@ public class PageExercice extends HeaderAbstract {
 
     // Méthode pour appliquer un style spécifié
     public void applyStyle(String style) {
-        if (style == getDaymode()){
+        if (style == getDaymode()) {
             this.dayOrNight = true;
-        }
-        else{
+        } else {
             this.dayOrNight = false;
         }
         HBox buttonBox = (HBox) this.bottomVBox.getChildren().get(0);
@@ -131,9 +131,28 @@ public class PageExercice extends HeaderAbstract {
 
         // Création du bouton d'action
         MenuButton actionButton = createActionMenuButton();
-        Button getInstructionsButton = createButton("Obtenir les instructions");
-        Button runButton = createGreenButton("EXÉCUTER");
-        Button stopButton = createRedButton("ARRÊTER");
+        Button getInstructionsButton = createButton("Get instructions");
+
+        // Définition des actions des boutons
+
+        getInstructionsButton.setOnAction(e -> {
+            TextFlow lienaide = new TextFlow();
+            Hyperlink lienHyper = new Hyperlink("https://java.l3.miage.dev/langage_java/premiere_classe.html");
+            lienHyper.setOnAction(event -> getHostServices().showDocument(lienHyper.getText()));
+            lienaide.getChildren().add(lienHyper);
+
+            outputTextArea.setText("N'oubliez pas d'utiliser System.out.println();\nVotre code doit avoir un MAIN !\n ");
+            outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 0.6);");
+            outputTextArea.getStyleClass().addAll("outputTextArea", "consolas-font");
+
+            if (!this.dayOrNight) {
+                outputTextArea.setStyle("-fx-text-fill: white");
+            }
+
+        });
+
+        Button runButton = createGreenButton("RUN");
+        Button stopButton = createRedButton("STOP");
 
         runButton.getStyleClass().add("green-button");
         stopButton.getStyleClass().add("red-button");
@@ -181,9 +200,9 @@ public class PageExercice extends HeaderAbstract {
     // Méthode pour exécuter le code
     public void runCode() {
         // Simulation de l'exécution du code et affichage du résultat
-        String codeOutput = "Bonjour le monde !";
+        String codeOutput = "Hello World !";
         outputTextArea.setText(codeOutput);
-        if (this.dayOrNight == false){
+        if (this.dayOrNight == false) {
             outputTextArea.setStyle("-fx-text-fill: white");
         }
     }

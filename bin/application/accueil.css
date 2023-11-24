@@ -1,0 +1,53 @@
+.day-mode {
+    -fx-text-fill: black;
+}
+
+.night-mode {
+    -fx-background-color: rgb(67, 63, 63);
+    background-color: rgb(67, 63, 63);
+    -fx-text-fill: white;
+    -fx-background-color: rgb(67, 63, 63);
+}
+
+.day-mode-button {
+    font-size: 20px;
+    -fx-font-size: 20px;
+}
+
+.header {
+    -fx-padding: 10px;
+    padding: 10px;
+    -fx-text-fill: white;
+    font-size: 18px;
+    -fx-font-size: 18px;
+}
+
+
+.root.day-mode {
+    -fx-background-color: white;
+    background-color: white;
+}
+
+.root.night-mode,
+scene.night-mode {
+    -fx-background-color: rgb(67, 63, 63);
+    background-color: rgb(67, 63, 63);
+
+}
+
+.text-area.two.night-mode {
+    -fx-control-inner-background: #2f2f2f;
+    -fx-highlight-fill: #555555;
+    -fx-highlight-text-fill: white;
+}
+
+.root {
+    -fx-background-color: whitesmoke;
+    background-color: whitesmoke;
+}
+
+.night-mode .button {
+    -fx-background-color: rgb(110, 108, 108);
+    background-color: rgb(110, 108, 108);
+    -fx-text-fill: white;
+}

@@ -167,6 +167,7 @@ public abstract class HeaderAbstract extends Application {
         return modeDayNightHeaderHBoxRight;
     }
 
+
     public HBox Header(){
 
         HBox sorbonne = new HBox();

@@ -98,6 +98,7 @@ public class PageExercice extends HeaderAbstract {
             outputTextArea.setStyle("-fx-text-fill: white;");
         } else {
             outputTextArea.setStyle("-fx-text-fill: black;");
+            outputTextArea.setEditable(false);
         }
 
         inputTextArea.getStyleClass().removeAll(getDaymode(), getNightMode());

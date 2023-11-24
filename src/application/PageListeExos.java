@@ -42,10 +42,13 @@ public class PageListeExos extends HeaderAbstract {
 
 	@Override
 	public void applyStyle(String style) {
+		//obtenir tout les conteneurs de root pour pouvoir changer leurs style
 		HBox Header = (HBox) root.getChildren().get(0);
 		Label label = (Label) root.getChildren().get(1);
 		VBox Vbox = (VBox) root.getChildren().get(3);
 
+		//on retir le style de base et on le remplace par le nouveau style choisie
+		//jour / nuit
 		root.setStyle("-fx-background-color :rgb(131, 131, 131);");
 		Header.getStyleClass().removeAll(getDaymode(), getNightMode());
 		Header.getStyleClass().addAll(style, "header");
@@ -53,6 +56,8 @@ public class PageListeExos extends HeaderAbstract {
 		label.getStyleClass().addAll(style, "titlelabel");
 		Vbox.getStyleClass().removeAll(getDaymode(), getNightMode());
 		Vbox.getStyleClass().addAll(style, "linked");
+
+		//obtention des hyperlinks des exercices pour changer leurs CSS
 		for (HBox hBox : listeHbox) {
 			hBox.getStyleClass().removeAll(getDaymode(), getNightMode());
 			hBox.getStyleClass().addAll(style, "smallhbox");
@@ -63,6 +68,7 @@ public class PageListeExos extends HeaderAbstract {
 	}
 
 	private VBox createRootPane() {
+		//creation de la VBox principale
 		VBox root = new VBox();
 		root.setSpacing(20);
 		root.setAlignment(Pos.CENTER);
@@ -74,7 +80,7 @@ public class PageListeExos extends HeaderAbstract {
 		levelComboBox = createLevelComboBox();
 
 		exerciseContainer = createExerciseContainer();
-
+		// on lui ajoute tout les childrens
 		root.getChildren().addAll(Header(), titleLabel, levelComboBox, exerciseContainer);
 		root.getStyleClass().addAll(getNightMode());
 
@@ -82,6 +88,7 @@ public class PageListeExos extends HeaderAbstract {
 	}
 
 	private ComboBox<String> createLevelComboBox() {
+		// création de la liste déroulante avec comboBox
 		ComboBox<String> comboBox = new ComboBox<>();
 		comboBox.getItems().addAll("L2", "L3", "M1", "M2");
 		comboBox.setPromptText("Sélectionnez un niveau");
@@ -91,13 +98,16 @@ public class PageListeExos extends HeaderAbstract {
 	}
 
 	private VBox createExerciseContainer() {
+		// creation de la VBox qui contient les link des exos
 		VBox container = new VBox();
 		container.setSpacing(12);
 		container.setPadding(new Insets(0));
 		return container;
 	}
 
+
 	private ScrollPane createScrollPane(VBox content) {
+
 		ScrollPane scrollPane = new ScrollPane();
 		scrollPane.setContent(content);
 		scrollPane.setFitToWidth(true);
@@ -105,6 +115,7 @@ public class PageListeExos extends HeaderAbstract {
 	}
 
 	private void updateExercises() {
+		//sert à dynamiser la scroll
 		exerciseContainer.getChildren().clear();
 		String selectedLevel = levelComboBox.getSelectionModel().getSelectedItem();
 		if (selectedLevel != null) {
@@ -128,6 +139,7 @@ public class PageListeExos extends HeaderAbstract {
 	}
 
 	private void addExercisesForLevel(String level, int numberOfExercises) {
+		//liste des exercices 
 		List<String> uniqueSubjects = Arrays.asList("Java Programming", "Object-Oriented Programming", "Advanced Java",
 				"Java Mastery");
 
@@ -143,9 +155,8 @@ public class PageListeExos extends HeaderAbstract {
 	}
 
 	private void handleExerciseClick(String exerciseTitle) {
-		System.out.println("Exercice cliqué : " + exerciseTitle);
-		
-		Button bouton = new Button("n");
+		//sert a switch entre les pages
+		Button bouton = new Button("changement de page");
 		
 		PageExercice pageExercice = new PageExercice();
 		Stage stage = new Stage();
@@ -158,11 +169,13 @@ public class PageListeExos extends HeaderAbstract {
 	
 
 	private HBox addExercise(String title) {
+		//ajoute les exercices
+
 		HBox hbox = new HBox();
 		hbox.setAlignment(Pos.CENTER);
 		hbox.setSpacing(20);
 		hbox.setPadding(new Insets(5));
-
+		// création d l'hyperlink pour acceder aux exercices
 		Hyperlink hyperlink = new Hyperlink(title);
 		hyperlink.setStyle("-fx-font-size: 16px;");
 		hyperlink.setOnAction(e -> handleExerciseClick(title));
@@ -177,19 +190,21 @@ public class PageListeExos extends HeaderAbstract {
 		});
 
 		hbox.getChildren().add(hyperlink);
-
+		//image
 		Image hourglassImage = new Image(getClass().getResourceAsStream("start.png"));
 		ImageView hourglassView = new ImageView();
 		hourglassView.setFitWidth(25);
 		hourglassView.setFitHeight(25);
-
+		//l'image est dans un bouton
 		Button hourglassButton = new Button();
 		hourglassButton.setGraphic(hourglassView);
 		hourglassButton.setStyle("-fx-background-color: transparent;");
 		hourglassButton.setOnAction(e -> {
+			//on remplace l'ancienne image par la nouvelle
 			Image hourglassImage2 = new Image(getClass().getResourceAsStream(hourGlass.nextImage()));
 			hourglassView.setImage(hourglassImage2);
 		});
+		//augmente la taille quand on passe par dessus le boutton
 		hourglassButton.setOnMouseEntered(e -> {
 			hourglassButton.setCursor(Cursor.HAND);
 			hourglassView.setScaleX(1.2);

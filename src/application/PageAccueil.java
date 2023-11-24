@@ -45,7 +45,7 @@ public class PageAccueil extends HeaderAbstract {
         // Label pour expliquer pourquoi le site a été créé
         pourquoiMiageLabel = createStyledLabel(getDaymode());
         pourquoiMiageLabel.setText(
-                "J'ai créé ce site afin de permettre une facilitation de l'utilisation de mes ressources. Je mets à disposition sur ce site des exercices ainsi que des cours pour l'entiereté des mes étudiants en L1, L2, L3, M1 et M2");
+                "J'ai créé ce site afin de permettre une facilitation de l'utilisation de mes ressources. Je mets à disposition sur ce site des exercices ainsi que des cours pour l'entiereté des mes étudiants en L2, L3, M1 et M2");
         pourquoiMiageLabel.setFont(Font.font("Consolas", FontWeight.NORMAL, 18));
 
         // Titre pour la section des ressources

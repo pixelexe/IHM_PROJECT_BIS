@@ -20,7 +20,6 @@ public class PageExercice extends HeaderAbstract {
 
         Label titleLabel = createLabel(" L3 Exercice 1 : Hello World");
         titleLabel.getStyleClass().add("title-label");
-
         root = createVBox(10, Header(), titleLabel);
 
         inputTextArea = createStyledTextArea(getDaymode());
@@ -47,20 +46,20 @@ public class PageExercice extends HeaderAbstract {
         });
 
         HBox buttonBox = createStyledButtonBox(getDaymode());
-
-        VBox bottomVBox = createVBox(0, buttonBox, createOutputLabel(" Output : "), outputTextArea);
-
+        Label outputLabel=createOutputLabel(" Output : ");
+        outputLabel.getStyleClass().add("output-label");
+        VBox bottomVBox = createVBox(0, buttonBox, outputLabel, outputTextArea);
         bottomVBox.getChildren().get(0).getStyleClass().add("buttonVBox");
         bottomVBox.getChildren().get(0).getStyleClass().add("output");
-
+        
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(root);
         borderPane.setCenter(inputTextArea);
         borderPane.setBottom(bottomVBox);
 
         Scene scene = new Scene(borderPane, 900, 700);
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-
+        scene.getStylesheets().add(getClass().getResource("stylePageExercice.css").toExternalForm());
+        
         setDayMode();
 
         primaryStage.setScene(scene);

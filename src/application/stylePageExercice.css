@@ -1,0 +1,79 @@
+.text-area {
+    font-size: 18.0px;
+    -fx-font-size: 18.0px;
+}
+
+.outputTextArea {
+    -fx-pref-height: 150.0px;
+}
+
+
+.text-area.day-mode {
+    -fx-control-inner-background: white;
+    -fx-highlight-fill: #d6d6d6;
+    -fx-highlight-text-fill: black;
+}
+
+.text-area.night-mode {
+    -fx-control-inner-background: rgb(67.0, 63.0, 63.0);
+    -fx-highlight-text-fill: white;
+}
+
+.day-mode {
+    -fx-text-fill: black;
+}
+
+.night-mode {
+    -fx-text-fill: white;
+    -fx-background-color: rgb(67.0, 63.0, 63.0);
+}
+
+.day-mode-button {
+    font-size: 20.0px;
+    -fx-font-size: 20.0px;
+}
+
+.header {
+    -fx-padding: 10.0px;
+    padding: 10.0px;
+    -fx-text-fill: white;
+    font-size: 18.0px;
+    -fx-font-size: 18.0px;
+}
+
+
+.title-label {
+    -fx-font-size: 24.0px;
+    font-size: 24.0px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+.night-mode .title-label {
+	-fx-text-fill:white;
+}
+
+.green-button {
+    -fx-background-color: #28a745;
+    background-color: #28a745;
+    -fx-text-fill: white;
+}
+
+.red-button {
+    -fx-background-color: #dc3545;
+    background-color: #dc3545;
+    -fx-text-fill: white;
+}
+
+.output-label {
+    -fx-font-size: 20.0px;
+    font-size: 20.0px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-alignment: center-left;
+}
+
+.night-mode .output-label{
+	-fx-text-fill: white;
+}
+

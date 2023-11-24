@@ -24,11 +24,32 @@
     -fx-background-color : rgb(131, 131, 131);;
     -fx-text-fill : white;
 }
-.day-mode.header{
-    -fx-background-color : rgb(131, 131, 131);
-}
 .night-mode.header{
     -fx-background-color : rgb(131, 131, 131);
+}
+
+.day-mode {
+    -fx-text-fill: black;
+}
+
+.night-mode {
+    -fx-background-color: rgb(67, 63, 63);
+    background-color: rgb(67, 63, 63);
+    -fx-text-fill: white;
+    -fx-background-color: rgb(67, 63, 63);
+}
+
+.day-mode-button {
+    font-size: 20px;
+    -fx-font-size: 20px;
+}
+
+.header {
+    -fx-padding: 10px;
+    padding: 10px;
+    -fx-text-fill: white;
+    font-size: 18px;
+    -fx-font-size: 18px;
 }
 
 

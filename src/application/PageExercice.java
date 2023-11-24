@@ -45,11 +45,11 @@ public class PageExercice extends HeaderAbstract {
                 outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 1.0);");
             }
             if (newValue.isEmpty()) {
-
+                
                 outputTextArea.setText("Output will appear here ...");
-                if (this.dayOrNight == false) {
-                    outputTextArea.setStyle("-fx-text-fill: white");
-                }
+                        if (this.dayOrNight == false){
+            outputTextArea.setStyle("-fx-text-fill: white");
+        }
             }
         });
 
@@ -77,9 +77,10 @@ public class PageExercice extends HeaderAbstract {
     }
 
     public void applyStyle(String style) {
-        if (style == getDaymode()) {
+        if (style == getDaymode()){
             this.dayOrNight = true;
-        } else {
+        }
+        else{
             this.dayOrNight = false;
         }
         HBox buttonBox = (HBox) this.bottomVBox.getChildren().get(0);
@@ -160,10 +161,10 @@ public class PageExercice extends HeaderAbstract {
     }
 
     public void runCode() {
-
+        
         String codeOutput = "Hello world !";
         outputTextArea.setText(codeOutput);
-        if (this.dayOrNight == false) {
+        if (this.dayOrNight == false){
             outputTextArea.setStyle("-fx-text-fill: white");
         }
     }

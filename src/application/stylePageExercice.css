@@ -108,3 +108,7 @@
     -fx-font-family: "Consolas";
     font-family: "Consolas";
 }
+
+#darkmodeOutPutArea.night-mode{
+    -fx-text-fill: white
+}

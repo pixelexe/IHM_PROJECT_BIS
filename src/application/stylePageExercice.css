@@ -7,16 +7,21 @@
     -fx-pref-height: 150.0px;
 }
 
-
 .text-area.day-mode {
     -fx-control-inner-background: white;
-    -fx-highlight-fill: #d6d6d6;
-    -fx-highlight-text-fill: black;
+    -fx-border-color: black;
+    border-color: black;
+    -fx-border-width: 1;
+    border-width: 1px;
 }
 
 .text-area.night-mode {
     -fx-control-inner-background: rgb(67.0, 63.0, 63.0);
     -fx-highlight-text-fill: white;
+    -fx-border-color: white;
+    border-color: white;
+    -fx-border-width: 1;
+    border-width: 1px;
 }
 
 .day-mode {
@@ -41,7 +46,6 @@
     font-size: 18.0px;
     -fx-font-size: 18.0px;
 }
-
 
 .title-label {
     -fx-font-size: 24.0px;
@@ -74,9 +78,6 @@
     -fx-alignment: center-left;
 }
 
-.night-mode .output-label {
-    -fx-text-fill: white;
-}
 
 .buttonbox2.day-mode {
     -fx-background-color: white;
@@ -99,5 +100,11 @@
     background-color: rgb(67.0, 63.0, 63.0);
     -fx-border-color: rgb(67.0, 63.0, 63.0);
     border-color: rgb(67.0, 63.0, 63.0);
+}
 
+.title-label,
+.consolas-font,
+.outputTextArea {
+    -fx-font-family: "Consolas";
+    font-family: "Consolas";
 }

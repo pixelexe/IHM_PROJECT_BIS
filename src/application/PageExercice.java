@@ -20,7 +20,7 @@ public class PageExercice extends HeaderAbstract {
     public void start(Stage primaryStage) {
 
         Label titleLabel = createLabel(" L3 Exercice 1 : Hello World");
-        titleLabel.getStyleClass().add("title-label");
+        titleLabel.getStyleClass().addAll("title-label", "consolas-font");
         root = createVBox(10, Header(), titleLabel);
 
         inputTextArea = createStyledTextArea(getDaymode());
@@ -30,11 +30,13 @@ public class PageExercice extends HeaderAbstract {
                 "        System.out.println(\"Hello, World !\"); \n" +
                 "    } \n" +
                 "}");
+        inputTextArea.getStyleClass().add("consolas-font");
 
         outputTextArea = createStyledTextArea(getDaymode());
         outputTextArea.setText("Output will appear here ...");
         outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 0.6);");
-        outputTextArea.getStyleClass().addAll("outputTextArea");
+        outputTextArea.getStyleClass().addAll("outputTextArea", "consolas-font");
+
         outputTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("Output will appear here ...")) {
                 outputTextArea.setStyle("-fx-text-fill: rgba(0, 0, 0, 0.6);");
@@ -48,15 +50,12 @@ public class PageExercice extends HeaderAbstract {
 
         HBox buttonBox = createStyledButtonBox(getDaymode());
 
-
-
-        
-        Label outputLabel=createOutputLabel(" Output : ");
+        Label outputLabel = createOutputLabel(" Output : ");
         outputLabel.getStyleClass().add("output-label");
         bottomVBox = createVBox(0, buttonBox, outputLabel, outputTextArea);
         bottomVBox.getChildren().get(0).getStyleClass().add("buttonVBox");
         bottomVBox.getChildren().get(0).getStyleClass().add("output");
-        
+
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(root);
         borderPane.setCenter(inputTextArea);
@@ -64,7 +63,7 @@ public class PageExercice extends HeaderAbstract {
 
         Scene scene = new Scene(borderPane, 900, 700);
         scene.getStylesheets().add(getClass().getResource("stylePageExercice.css").toExternalForm());
-        
+
         setDayMode();
 
         primaryStage.setScene(scene);
@@ -75,14 +74,20 @@ public class PageExercice extends HeaderAbstract {
     public void applyStyle(String style) {
         HBox buttonBox = (HBox) this.bottomVBox.getChildren().get(0);
         buttonBox.getStyleClass().removeAll(getDaymode(), getNightMode());
-        buttonBox.getStyleClass().addAll("buttonbox2",style);
+        buttonBox.getStyleClass().addAll("buttonbox2", style);
 
         Label labelOutPut = (Label) this.bottomVBox.getChildren().get(1);
         labelOutPut.getStyleClass().removeAll(getDaymode(), getNightMode());
-        labelOutPut.getStyleClass().addAll("labeloutput",style);
+        labelOutPut.getStyleClass().addAll("labeloutput", style);
 
         this.bottomVBox.getStyleClass().removeAll(getDaymode(), getNightMode());
-        this.bottomVBox.getStyleClass().addAll("labeloutput",style);
+        this.bottomVBox.getStyleClass().addAll("labeloutput", style);
+
+        if (style.equals("night-mode")) {
+            outputTextArea.setStyle("-fx-text-fill: white;");
+        } else {
+            outputTextArea.setStyle("-fx-text-fill: black;");
+        }
 
         inputTextArea.getStyleClass().removeAll(getDaymode(), getNightMode());
         inputTextArea.getStyleClass().add(style);
@@ -130,8 +135,8 @@ public class PageExercice extends HeaderAbstract {
                 new MenuItem("Download as Maven"),
                 new MenuItem("Request Help with this code"));
 
-        menuButton.setPrefWidth(120); 
-        menuButton.setPrefHeight(30); 
+        menuButton.setPrefWidth(120);
+        menuButton.setPrefHeight(30);
 
         menuButton.setStyle("-fx-font-size: 18px;");
 
@@ -140,7 +145,7 @@ public class PageExercice extends HeaderAbstract {
 
     private Label createOutputLabel(String text) {
         Label label = new Label(text);
-        label.getStyleClass().add("title-label"); 
+        label.getStyleClass().add("title-label");
         return label;
     }
 
